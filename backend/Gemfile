@@ -1,0 +1,43 @@
+source "https://rubygems.org"
+
+ruby "3.3.0"
+
+# Rails en modo API-only (sin views, sin asset pipeline) — todo lo que
+# necesitamos es exponer JSON para el frontend React
+gem "rails", "~> 7.1"
+
+# Adaptador de base de datos PostgreSQL
+gem "pg", "~> 1.5"
+
+# Servidor de aplicación
+gem "puma", ">= 6.0"
+
+# Framework de consumo/producción de Kafka. Trae rdkafka como dependencia
+# (por eso el Dockerfile instala librdkafka-dev)
+gem "karafka", "~> 2.4"
+
+# Habilita CORS: el frontend React corre en otro puerto/origen (localhost:5173)
+# y el navegador bloquea las requests entre orígenes distintos si no está configurado
+gem "rack-cors"
+
+# Serializador de JSON para las respuestas de la API (queries + paginación
+# desde el front sin escribir a mano toda la lógica de la respuesta)
+gem "jbuilder"
+
+# Reduce el tiempo de arranque en desarrollo cacheando el bootsnap
+gem "bootsnap", require: false
+
+group :development, :test do
+  # Debugging estándar en Rails 7+
+  gem "debug", platforms: %i[mri windows]
+end
+
+group :development do
+  # Recarga las clases sin reiniciar el server ante cambios de código
+  gem "listen", "~> 3.8"
+end
+
+group :test do
+  gem "rspec-rails", "~> 6.1"
+  gem "factory_bot_rails"
+end

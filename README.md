@@ -29,6 +29,16 @@ Basado en mensajería publicador/suscriptor y registro de eventos: las aplicacio
 
 Como resolución al trabajo práctico, desarrollamos un sistema de monitoreo de errores de aplicaciones distribuídas.
 
+**Tecnologías** utilizadas:
+
+- Apache Kafka
+- Ruby / Ruby on Rails / Karafka
+- Javascript / React
+- Docker
+- PostgreSQL
+- Python
+- Programación dirigida por especificaciones / Agentes de IA
+
 ### Funcionamiento
 
 Cuando una de las **aplicaciones principales** encuentra errores en tiempo de ejecución, las comunica a **nuestro sistema** para que los ingenieros de software analicen las incidencias (bugs) de forma cómoda y con herramientas poderosas.
@@ -41,11 +51,12 @@ Cuando una de las **aplicaciones principales** encuentra errores en tiempo de ej
 
 Principales ventajas del uso de nuestro sistema:
 
-- Desacoplamiento: la app principal no necesita saber cómo se procesan los logs
-- Persistencia: los logs no se pierden por más que la app principal falle
-- Orden: los errores se procesan en el orden en el que ocurrieron
-- Flexibilidad: pueden desarrollarse más consumidores, como uno para notificaciones, otro para análisis de datos
+- **Desacoplamiento:** la app principal no necesita saber cómo se procesan los logs.
+- **Persistencia:** los logs no se pierden por más que la app principal falle.
+- **Orden:** los errores se procesan en el orden en el que ocurrieron.
+- **Flexibilidad:** pueden desarrollarse más consumidores, como uno para notificaciones, otro para análisis de datos.
 
 ## Documentación
 
-- [Arquitectura](docs/arquitectura.md)
+- [Arquitectura del proyecto](docs/arquitectura.md)
+- (backend, frontend...)
