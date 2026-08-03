@@ -59,4 +59,5 @@ Principales ventajas del uso de nuestro sistema:
 ## Documentación
 
 - [Arquitectura del proyecto](docs/arquitectura.md)
-- (backend, frontend...)
+- [Backend](backend/README.md)
+- [Frontend](frontend/README.md)
