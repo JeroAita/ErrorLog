@@ -40,21 +40,17 @@ Principales ventajas del uso de nuestro sistema:
 
 Cuando una de las **aplicaciones principales** encuentra errores en tiempo de ejecución, las comunica a **nuestro sistema** para que los ingenieros de software analicen las incidencias (bugs) de forma cómoda y con herramientas poderosas.
 
-~~~
-[App principal]{datos de error} > [Kafka (Tópico: "error-logs")] > [Sistema de logs]{interfaz para devs}
-~~~
-
 Utilizaremos las siguientes tecnologías:
 
 - Apache Kafka
 - Ruby / Ruby on Rails / Karafka
 - Javascript / React / Vite / ESLint
 - Docker
-- PostgreSQL
+- SQLite
 - Python
 - Programación dirigida por especificaciones / Agentes de IA
 
-## Documentación
+## Documentación adicional
 
 - [Arquitectura del proyecto](docs/arquitectura.md)
 - [Backend](backend/README.md)

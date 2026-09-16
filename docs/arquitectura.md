@@ -19,11 +19,10 @@ El mismo consistirá en una aplicación web SPA: backend REST Ruby + frontend Re
 
 Se utilizará Docker para containerizar los módulos, salvo para los productores, ya que los incluídos en el repositorio son a modo de ejemplo.
 
-En definitiva, una imagen Docker para cada uno de los siguientes:
+En definitiva, una imagen Docker distinta para cada uno de los siguientes:
 
 - Servicio de Kafka
-- Backend Ruby
-- Instancia de PostgreSQL (BD para backend)
+- Backend Ruby + BD SQLite
 - Frontend React
 
 ## Sistema de Archivos
