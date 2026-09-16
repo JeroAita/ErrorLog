@@ -1,7 +1,7 @@
 
 # Arquitectura
 
-## Módulos
+## Componentes e infraestructura
 
 El sistema consiste en tres módulos principales, más algunos módulos auxiliares:
 
@@ -24,6 +24,8 @@ En definitiva, una imagen Docker distinta para cada uno de los siguientes:
 - Servicio de Kafka
 - Backend Ruby + BD SQLite
 - Frontend React
+
+![](arquitectura.png)
 
 ## Sistema de Archivos
 
