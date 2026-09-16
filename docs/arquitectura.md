@@ -42,8 +42,7 @@ producers/ # Scripts Python que comandarán errores a Kafka, por ejemplo:
 
 backend/ # Aplicación Ruby on Rails.
     app/
-    config/
-    db/
+    bin/
     Gemfile    # Dependencias del proyecto Ruby
     Dockerfile # Define cómo levantar la aplicación como imagen Docker
 
