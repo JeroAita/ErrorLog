@@ -48,7 +48,6 @@ Utilizaremos las siguientes tecnologías:
 - Docker
 - SQLite
 - Python
-- Programación dirigida por especificaciones / Agentes de IA
 
 ## Documentación adicional
 
