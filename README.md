@@ -54,3 +54,18 @@ Utilizaremos las siguientes tecnologías:
 - [Arquitectura del proyecto](docs/arquitectura.md)
 - [Backend](backend/README.md)
 - [Frontend](frontend/README.md)
+
+## Levantar proyecto
+
+Puede levantarse el proyecto completo con Docker:
+
+~~~
+docker compose up
+~~~
+
+Los componentes y sus puertos se encuentran descritos en `docker-compose.yaml`. Un resumen:
+
+- Backend: 3000
+- Frontend: 5173
+- Kafka: 9092
+- Kafka-ui: 8080
