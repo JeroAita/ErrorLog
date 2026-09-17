@@ -110,7 +110,7 @@ GEM
     jbuilder (2.15.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
-    json (3.0.2)
+    json (2.21.2)
     karafka (2.6.1)
       karafka-core (>= 2.6.2, < 2.7.0)
       karafka-rdkafka (>= 0.28.0)
@@ -282,6 +282,7 @@ DEPENDENCIES
   bundler-audit
   debug
   jbuilder
+  json (~> 2.7)
   karafka (~> 2.4)
   puma (>= 5.0)
   rack-cors

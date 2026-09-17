@@ -24,7 +24,10 @@ bundle exec karafka server    # consume el tópico "error-logs"
 ~~~
 
 La ruta del broker se toma de la variable `KAFKA_BROKER` (por defecto `localhost:9092`).
-Los mensajes son JSON y los parsea el deserializer por defecto de Karafka.
+Los mensajes son JSON y los parsea el deserializer por defecto de Karafka; cada
+evento del tópico `error-logs` se persiste en la tabla `error_logs` (ver
+`docs/error_log_event.schema.json`). Un payload que no cumpla el contrato se
+loguea como warning y se descarta, sin frenar el batch.
 
 ## Testing, lint y seguridad
 

@@ -1,0 +1,19 @@
+division_by_zero:
+  occurred_at: 2026-09-17T14:30:00Z
+  service_name: producer_division_by_cero
+  error_type: ZeroDivisionError
+  message: division by zero
+  stack_trace: "Traceback (most recent call last):\n  ..."
+  severity: error
+  metadata:
+    environment: development
+    user_id: 42
+
+index_error:
+  occurred_at: 2026-09-17T15:00:00Z
+  service_name: producer_index_error
+  error_type: IndexError
+  message: list index out of range
+  severity: critical
+  metadata:
+    environment: production
