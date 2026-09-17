@@ -1,4 +1,6 @@
-todo.md
+# Repo multi-app: backend/ y frontend/ mantienen sus propios .gitignore
+# con las reglas específicas (Rails / React). Acá sólo reglas de raíz.
 
-backend/.gitignore
-frontend/.gitignore
+# Planes / artefactos generados por los agentes de IA (documentan sesiones,
+# no forman parte del código versionado)
+.opencode/

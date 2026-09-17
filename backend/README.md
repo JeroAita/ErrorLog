@@ -1,30 +1,41 @@
 # README
 
-Este proyecto fue generado con Ruby 3.2.2 y Rails 8.1.3.1.
+Este backend es una aplicación **Ruby on Rails 8 (API-only)** con **SQLite** como
+base de datos. Incluye un consumer de **Karafka** para el tópico `error-logs`.
 
-Este backend se levanta en conjunto con el resto de componentes del sistema, con `docker-compose`, pero puede levantarse individualmente ejecutando `?`.
+Rails: 8.1.3.1 · Ruby: 3.3.12 (ver `backend/.ruby-version`) · BD: SQLite
+(`storage/development.sqlite3`).
 
----
+## Setup (sin Docker)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Requisitos: Ruby 3.3.12, Bundler y un Ruby con la gema `sqlite3` instalada.
 
-Things you may want to cover:
+~~~bash
+cd backend
+bundle install
+bin/rails db:prepare    # crea storage/development.sqlite3 + schema
+bin/rails server        # API en http://localhost:3000
+~~~
 
-* Ruby version
+### Consumer Karafka
 
-* System dependencies
+~~~bash
+bundle exec karafka server    # consume el tópico "error-logs"
+~~~
 
-* Configuration
+La ruta del broker se toma de la variable `KAFKA_BROKER` (por defecto `localhost:9092`).
+Los mensajes son JSON y los parsea el deserializer por defecto de Karafka.
 
-* Database creation
+## Testing, lint y seguridad
 
-* Database initialization
+~~~bash
+bin/rails test      # Minitest
+bin/rubocop         # estilo
+bin/brakeman        # análisis estático de seguridad
+bin/bundler-audit   # auditoría de dependencias
+~~~
 
-* How to run the test suite
+## Arquitectura
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Ver [docs/arquitectura.md](../docs/arquitectura.md) (diagrama + componentes:
+productores Python → Kafka → consumer Rails → SQLite → frontend React).

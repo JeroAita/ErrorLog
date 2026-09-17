@@ -23,10 +23,6 @@ class KarafkaApp < Karafka::App
     # En development conviene ver los logs de Karafka en la consola
     config.logger = Rails.logger
 
-    # Formato de serialización de los mensajes que llegan al tópico.
-    # Los productores Python van a mandar JSON, así que deserializamos igual.
-    config.deserializers.payload = Karafka::Serialization::Json::Deserializer.new
-
     # Cuántos mensajes puede procesar en paralelo cada proceso consumer.
     # Con 1 tópico y fines de demostración, alcanza y sobra con un worker.
     config.concurrency = 2
@@ -38,6 +34,8 @@ class KarafkaApp < Karafka::App
   routes.draw do
     topic "error-logs" do
       consumer ErrorLogConsumer
+      # Los productores Python envían JSON: el deserializer por defecto lo parsea.
+      deserializers payload: Karafka::Deserializers::Payload.new
     end
   end
 end
