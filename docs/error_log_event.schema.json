@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "error_log_event.schema.json",
+  "title": "Evento de error (tópico error-logs)",
+  "description": "Contrato del mensaje que los productores publican en el tópico 'error-logs' de Kafka. La message key del mensaje debe ser el service_name.",
+  "type": "object",
+  "required": [
+    "timestamp",
+    "service_name",
+    "error_type",
+    "message",
+    "severity"
+  ],
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Momento de ocurrencia del error en UTC (ISO 8601, debe incluir 'Z'). Lo aporta el productor; no es el timestamp de ingesta del broker."
+    },
+    "service_name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifica al servicio que reporta el error. También se usa como message key del mensaje Kafka para mantener el orden por servicio."
+    },
+    "error_type": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Clase o tipo del error, ej: 'ZeroDivisionError'."
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Descripción legible del error."
+    },
+    "stack_trace": {
+      "type": "string",
+      "description": "Traza de pila tal como la arroja el runtime (opcional, múltiples líneas)."
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["debug", "info", "warning", "error", "critical"],
+      "description": "Nivel de severidad del error."
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Contenedor extensible para contexto adicional: request_id, user_id, environment, hostname, etc."
+    }
+  },
+  "additionalProperties": false
+}

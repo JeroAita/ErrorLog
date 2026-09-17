@@ -53,3 +53,36 @@ frontend/ # Aplicación React.
     package.json
     Dockerfile
 ~~~
+
+## Contrato de datos (tópico `error-logs`)
+
+Los productores publican un único tipo de mensaje en el tópico `error-logs`. El
+contrato se define en
+[`docs/error_log_event.schema.json`](error_log_event.schema.json) (JSON Schema
+draft-07).
+
+Ejemplo de payload válido:
+
+~~~json
+{
+  "timestamp": "2026-09-17T14:30:00Z",
+  "service_name": "producer_division_by_cero",
+  "error_type": "ZeroDivisionError",
+  "message": "division by zero",
+  "stack_trace": "Traceback (most recent call last):\n  ...",
+  "severity": "error",
+  "metadata": {
+    "environment": "development",
+    "user_id": 42
+  }
+}
+~~~
+
+Consideraciones:
+
+- La **message key** de Kafka es el `service_name`: todos los errores de un mismo
+  servicio van a la misma partición, conservando el orden de ocurrencia.
+- El objeto de primer nivel es estricto (`additionalProperties: false`): cualquier
+  dato extra debe ir dentro de `metadata`, el contenedor oficial de contexto
+  (`request_id`, `user_id`, `environment`, etc.).
+- `stack_trace` es opcional: hay errores que se reportan sin traza de pila.
