@@ -54,7 +54,7 @@ frontend/ # Aplicación React.
     Dockerfile
 ~~~
 
-## Contrato de datos (tópico `error-logs`)
+## Kafka: Contrato de datos (tópico `error-logs`)
 
 Los productores publican un único tipo de mensaje en el tópico `error-logs`. El
 contrato se define en

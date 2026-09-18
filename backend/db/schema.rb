@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_17_161722) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_17_232404) do
   create_table "error_logs", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "error_type", null: false
@@ -20,8 +20,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_17_161722) do
     t.string "service_name", null: false
     t.string "severity", null: false
     t.text "stack_trace"
+    t.string "status", default: "open", null: false
     t.datetime "updated_at", null: false
     t.index ["occurred_at"], name: "index_error_logs_on_occurred_at"
     t.index ["service_name"], name: "index_error_logs_on_service_name"
+    t.index ["status"], name: "index_error_logs_on_status"
   end
 end

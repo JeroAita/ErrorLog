@@ -29,6 +29,7 @@ class ErrorLogTest < ActiveSupport::TestCase
     assert_equal "division by zero", log.message
     assert_equal "Traceback (most recent call last):\n  ...", log.stack_trace
     assert_equal "error", log.severity
+    assert_equal "open", log.status
     assert_equal({ "environment" => "development" }, log.metadata)
   end
 
