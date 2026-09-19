@@ -37,7 +37,7 @@ function SummaryCards({ summary }) {
   return (
     <section className="summary">
       <div className="card card--total">
-        <span className="card__label">Total de errores</span>
+        <h3 className="card__title">Total de errores</h3>
         <span className="card__number">{total}</span>
       </div>
       <BreakdownCard

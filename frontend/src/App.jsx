@@ -22,11 +22,8 @@ const EMPTY_DRAFT = {
   error_type: '',
   severity: '',
   status: '',
-  q: '',
   from: '',
   to: '',
-  sort: '',
-  order: '',
 }
 
 function App() {
