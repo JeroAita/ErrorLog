@@ -9,12 +9,9 @@ import {
   DEFAULT_STATUSES,
 } from './api.js'
 import { toISOString, formatTime } from './lib/format.js'
-import FiltersBar from './components/FiltersBar.jsx'
+import Buscador from './components/Buscador.jsx'
 import SummaryCards from './components/SummaryCards.jsx'
-import ErrorsTable from './components/ErrorsTable.jsx'
-import Pagination from './components/Pagination.jsx'
 import ErrorDetailPanel from './components/ErrorDetailPanel.jsx'
-import StateMessage from './components/StateMessage.jsx'
 import './App.css'
 
 const POLL_INTERVAL_MS = 15_000
@@ -195,7 +192,10 @@ function App() {
     <div className="app">
       <header className="app__header">
         <div>
-          <h1>Sistema log de errores</h1>
+          <h1 className="app__title">
+            <span className="app__title-error">Error</span>
+            <span className="app__title-log">Log</span>
+          </h1>
           <p>Monitoreo y triage de errores reportados vía Apache Kafka.</p>
         </div>
         <div className="app__header-actions">
@@ -220,51 +220,24 @@ function App() {
       <main className="app__main">
         <SummaryCards summary={summary} />
 
-        <section className="panel">
-          <FiltersBar
-            meta={metaOptions}
-            draft={draft}
-            setDraft={setDraft}
-            onApply={applyFilters}
-            onClear={clearFilters}
-          />
-        </section>
-
-        <section className="panel">
-          {listLoading && errors.length === 0 && (
-            <StateMessage kind="loading">Cargando errores…</StateMessage>
-          )}
-
-          {!listLoading && listError && errors.length === 0 && (
-            <StateMessage kind="error" onRetry={manualRefresh}>
-              {listError}
-            </StateMessage>
-          )}
-
-          {!listLoading && !listError && errors.length === 0 && (
-            <StateMessage kind="empty">
-              No hay errores que coincidan con los criterios. Publicá un evento en
-              el tópico <code>error-logs</code> para verlo acá.
-            </StateMessage>
-          )}
-
-          {errors.length > 0 && (
-            <>
-              <ErrorsTable
-                errors={errors}
-                statuses={metaOptions.statuses ?? []}
-                disabledIds={updatingIds}
-                onOpen={openDetail}
-                onUpdateStatus={handleUpdateStatus}
-              />
-              <Pagination
-                meta={listMeta}
-                onPageChange={onPageChange}
-                onPerPageChange={onPerPageChange}
-              />
-            </>
-          )}
-        </section>
+        <Buscador
+          meta={metaOptions}
+          draft={draft}
+          setDraft={setDraft}
+          onApply={applyFilters}
+          onClear={clearFilters}
+          loading={listLoading}
+          error={listError}
+          errors={errors}
+          listMeta={listMeta}
+          statuses={metaOptions.statuses ?? []}
+          updatingIds={updatingIds}
+          onOpen={openDetail}
+          onUpdateStatus={handleUpdateStatus}
+          onPageChange={onPageChange}
+          onPerPageChange={onPerPageChange}
+          onRetry={manualRefresh}
+        />
       </main>
 
       <ErrorDetailPanel

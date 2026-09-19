@@ -96,11 +96,38 @@
   overflow: hidden;
 }
 
+/* ---------- Buscador ---------- */
+
+.buscador {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.buscador__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.buscador__count {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.buscador__separator {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+
 /* ---------- Tarjetas de resumen ---------- */
 
 .summary {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: minmax(140px, 0.7fr) minmax(0, 1.4fr) minmax(0, 1.6fr);
   gap: 16px;
 }
 
@@ -143,26 +170,69 @@
   margin-bottom: 10px;
 }
 
-.card__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
+.card__table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
 }
 
-.card__list li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
+.card__table th {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  padding: 2px 4px 8px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.card__table td {
+  text-align: center;
+  padding: 2px 4px;
 }
 
 .card__count {
-  margin-left: auto;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
   color: var(--text-h);
+  line-height: 1.3;
+}
+
+.card__cell--open {
+  color: var(--status-open);
+}
+.card__cell--investigating {
+  color: var(--status-investigating);
+}
+.card__cell--resolved {
+  color: var(--status-resolved);
+}
+.card__cell--ignored {
+  color: var(--status-ignored);
+}
+
+.card__cell--critical,
+.card__cell--error,
+.card__cell--warning,
+.card__cell--info,
+.card__cell--debug {
+  color: var(--badge-color);
+}
+
+.card__cell--critical {
+  --badge-color: var(--severity-critical);
+}
+.card__cell--error {
+  --badge-color: var(--severity-error);
+}
+.card__cell--warning {
+  --badge-color: var(--severity-warning);
+}
+.card__cell--info {
+  --badge-color: var(--severity-info);
+}
+.card__cell--debug {
+  --badge-color: var(--severity-debug);
 }
 
 /* ---------- Badges ---------- */

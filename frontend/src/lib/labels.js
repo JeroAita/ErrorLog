@@ -12,3 +12,10 @@ export const STATUS_LABELS = {
   resolved: 'resuelto',
   ignored: 'ignorado',
 }
+
+export const STATUS_SHORT_LABELS = {
+  open: 'Abierto',
+  investigating: 'Invest.',
+  resolved: 'Resuelto',
+  ignored: 'Ignorado',
+}
