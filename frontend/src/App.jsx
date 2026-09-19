@@ -237,6 +237,29 @@ function App() {
         />
       </main>
 
+      <footer className="app__footer">
+        <p>
+          TP Final · Administración de Bases de Datos · UTN Facultad Regional
+          Delta · 2026 · Prof. Vidal Jorge
+        </p>
+        <p>
+          Aita Jerónimo (
+          <a href="mailto:jaita@frd.utn.edu.ar">jaita@frd.utn.edu.ar</a>) ·
+          Condo Kevin (
+          <a href="mailto:kcondo@utn.frd.edu.ar">kcondo@utn.frd.edu.ar</a>)
+        </p>
+        <p>
+          Repositorio:{' '}
+          <a
+            href="https://github.com/JeroAita/ErrorLog"
+            target="_blank"
+            rel="noreferrer"
+          >
+            github.com/JeroAita/ErrorLog
+          </a>
+        </p>
+      </footer>
+
       <ErrorDetailPanel
         error={detail}
         loading={detailLoading}

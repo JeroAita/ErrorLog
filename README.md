@@ -10,9 +10,8 @@
 
 **Cátedra**
 
-- Administración de Bases de datos
 - Universidad Tecnológica Nacional, Facultad Regional Delta
-- Junio 2026
+- Administración de Bases de datos 2026
 - Profesor Vidal Jorge
 
 **La consigna:** desarrollar una aplicación que utilice Apache Kafka.

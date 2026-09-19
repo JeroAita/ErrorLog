@@ -1,5 +1,5 @@
-import Badge from './Badge.jsx'
 import StatusSelector from './StatusSelector.jsx'
+import { SEVERITY_LABELS, STATUS_LABELS } from '../lib/labels.js'
 import { formatDateTime } from '../lib/format.js'
 
 function ErrorsTable({ errors, statuses, disabledIds, onOpen, onUpdateStatus }) {
@@ -28,11 +28,15 @@ function ErrorsTable({ errors, statuses, disabledIds, onOpen, onUpdateStatus }) 
                 <code>{error.error_type}</code>
               </td>
               <td className="errors-table__message">{error.message}</td>
-              <td>
-                <Badge kind="severity" value={error.severity} />
+              <td className="errors-table__cell--nowrap">
+                <span className={`enum-value enum-value--${error.severity}`}>
+                  {SEVERITY_LABELS[error.severity] ?? error.severity}
+                </span>
               </td>
-              <td>
-                <Badge kind="status" value={error.status} />
+              <td className="errors-table__cell--nowrap">
+                <span className={`enum-value enum-value--${error.status}`}>
+                  {STATUS_LABELS[error.status] ?? error.status}
+                </span>
               </td>
               <td className="errors-table__cell--nowrap">
                 <span onClick={(event) => event.stopPropagation()}>

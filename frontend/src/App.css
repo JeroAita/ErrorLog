@@ -39,6 +39,29 @@
   color: var(--text);
 }
 
+/* ---------- Footer ---------- */
+
+.app__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.app__footer p {
+  margin: 0;
+}
+
+.app__footer a {
+  color: var(--text-h);
+}
+
 /* ---------- Botones ---------- */
 
 .btn {
@@ -235,6 +258,45 @@
 }
 .card__cell--debug {
   --badge-color: var(--severity-debug);
+}
+
+/* ---------- Valores de enum (listado) ---------- */
+
+.enum-value {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.enum-value--open {
+  color: var(--status-open);
+}
+.enum-value--investigating {
+  color: var(--status-investigating);
+}
+.enum-value--resolved {
+  color: var(--status-resolved);
+}
+.enum-value--ignored {
+  color: var(--status-ignored);
+}
+.enum-value--critical {
+  color: var(--severity-critical);
+}
+.enum-value--error {
+  color: var(--severity-error);
+}
+.enum-value--warning {
+  color: var(--severity-warning);
+}
+.enum-value--info {
+  color: var(--severity-info);
+}
+.enum-value--debug {
+  color: var(--severity-debug);
 }
 
 /* ---------- Badges ---------- */
