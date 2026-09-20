@@ -24,6 +24,7 @@ Límites para los agentes de IA.
 
 - No realizar commits.
 - No modificar ni borrar archivos sin leerlos antes.
+- No versionar ni `git add` claves ni secretos (ej.: `config/master.key`, `config/credentials/*.key`, `.env`, certificados o claves privadas). El cifrado `config/credentials.yml.enc` sí se versiona (estándar Rails); la clave que lo descifra, jamás.
 - *Planes:* La especificación de los cambios realizados sobre el repositorio. Cuando serán realizados cambios o adiciones a los archivos, siempre generar un archivo markdown en `.opencode/plans`:
     - Con nombre `"YYYY-MM-DD-#_contexto"`, siendo `#` un numero incremental reseteado a diario y `contexto` una cadena relacionada con los cambios a realizar. 
     - Con contenido: 
