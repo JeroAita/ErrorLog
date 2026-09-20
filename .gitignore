@@ -4,3 +4,6 @@
 # Planes / artefactos generados por los agentes de IA (documentan sesiones,
 # no forman parte del código versionado)
 .opencode/
+
+backend/config/master.key
+backend/config/credentials.yml.enc
