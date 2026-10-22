@@ -1,7 +1,9 @@
 
-# Bases de datos: TP Final - Sistema Log de errores
+# ErrorLog - Sistema Log de Errores
 
-## Sobre el TP Final
+Proyecto presentado como trabajo práctico final frente a la asignatura Administración de Bases de datos.
+
+## Cátedra
 
 **Alumnos**
 
@@ -16,17 +18,21 @@
 
 **La consigna:** desarrollar una aplicación que utilice Apache Kafka.
 
-> [!info] Apache Kafka
-> 
-> Plataforma de transmisión de datos distribuída, diseñada para manejar flujos de datos en tiempo real de manera escalable y de alto rendimiento.
-> 
-> Basado en mensajería publicador/suscriptor y registro de eventos: las aplicaciones publicadoras envían datos a Kafka, y las aplicaciones suscriptoras los consumen.
-> 
-> [Sitio web de Apache Kafka](https://kafka.apache.org/documentation/)
+### Apache Kafka
+
+Plataforma de transmisión de datos distribuída, diseñada para manejar flujos de datos en tiempo real de manera escalable y de alto rendimiento.
+
+Basado en mensajería publicador/suscriptor y registro de eventos: las aplicaciones publicadoras envían datos a Kafka, y las aplicaciones suscriptoras los consumen.
+
+[Sitio web de Apache Kafka](https://kafka.apache.org/documentation/)
 
 ## Propuesta: Sistema log de errores
 
 Como resolución al trabajo práctico, desarrollamos un **sistema de monitoreo de errores de aplicaciones distribuídas**.
+
+El mismo formaría parte de una arquitectura de microservicios: resolviendo el monitoreo de avisos y alertas en logs de programas siendo ejecutados en contenedores o infraestructuras distintas.
+
+Cuando una de las **aplicaciones principales** encuentra errores en tiempo de ejecución, las comunica a **nuestro sistema** para que los ingenieros de software analicen las incidencias de forma cómoda y con herramientas poderosas.
 
 Principales ventajas del uso de nuestro sistema:
 
@@ -35,11 +41,7 @@ Principales ventajas del uso de nuestro sistema:
 - **Orden:** los errores se procesan en el orden en el que ocurrieron.
 - **Flexibilidad:** pueden desarrollarse más consumidores, como uno para notificaciones, otro para análisis de datos.
 
-## Arquitectura
-
-Cuando una de las **aplicaciones principales** encuentra errores en tiempo de ejecución, las comunica a **nuestro sistema** para que los ingenieros de software analicen las incidencias (bugs) de forma cómoda y con herramientas poderosas.
-
-Utilizaremos las siguientes tecnologías:
+## Stack
 
 - Apache Kafka
 - Ruby / Ruby on Rails / Karafka
@@ -55,7 +57,7 @@ Utilizaremos las siguientes tecnologías:
 - [Frontend](frontend/README.md)
 - [API - Contrato de endpoints](docs/api.md)
 
-## Levantar proyecto
+## Levantar entorno de desarrollo
 
 Puede levantarse el proyecto completo con Docker:
 
