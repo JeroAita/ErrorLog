@@ -1,5 +1,5 @@
 
-# ErrorLog - Sistema Log de Errores
+<h1><span style="color: red;">ERROR</span>Log - Sistema Log de Errores</h1>
 
 Proyecto presentado como trabajo práctico final frente a la asignatura Administración de Bases de datos.
 
@@ -29,6 +29,8 @@ Basado en mensajería publicador/suscriptor y registro de eventos: las aplicacio
 ## Propuesta: Sistema log de errores
 
 Como resolución al trabajo práctico, desarrollamos un **sistema de monitoreo de errores de aplicaciones distribuídas**.
+
+![Captura de pantalla de la interfaz principal](docs/errorlog_captura.png)
 
 El mismo formaría parte de una arquitectura de microservicios: resolviendo el monitoreo de avisos y alertas en logs de programas siendo ejecutados en contenedores o infraestructuras distintas.
 
