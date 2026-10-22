@@ -24,6 +24,12 @@ bundle exec karafka server    # consume el tópico "error-logs"
 ~~~
 
 La ruta del broker se toma de la variable `KAFKA_BROKER` (por defecto `localhost:9092`).
+Kafka expone dos listeners: `localhost:9092` para los clientes de la máquina del
+host y `kafka:29092` para los contenedores de Docker. Por eso, en
+`docker-compose.yaml` el backend y el consumer de Karafka usan
+`KAFKA_BROKER: kafka:29092`, mientras que la app corriendo a mano usa el
+default `localhost:9092`.
+
 Los mensajes son JSON y los parsea el deserializer por defecto de Karafka; cada
 evento del tópico `error-logs` se persiste en la tabla `error_logs` (ver
 `docs/error_log_event.schema.json`). Un payload que no cumpla el contrato se

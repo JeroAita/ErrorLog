@@ -1,9 +1,9 @@
-import json
 import os
 import traceback
 from datetime import datetime, timezone
 
 from kafka import KafkaProducer
+from kafka.serializer import JsonSerializer
 
 
 def main():
@@ -32,7 +32,10 @@ def main():
     try:
         producer = KafkaProducer(
             bootstrap_servers=kafka_broker,
-            value_serializer=lambda v: json.dumps(v).encode('utf-8')
+            value_serializer=JsonSerializer(),
+            max_block_ms=10000,
+            bootstrap_timeout_ms=5000,
+            request_timeout_ms=10000
         )
         producer.send(
             'error-logs',
@@ -43,7 +46,12 @@ def main():
         producer.close()
         print(f'Sent error-log to Kafka: {payload["service_name"]} - {payload["error_type"]}')
     except Exception as send_err:
-        print(f'Failed to send error-log: {send_err}', flush=True)
+        print(f'Failed to send error-log to {kafka_broker}: {send_err}', flush=True)
+        print(
+            'Check that Kafka is running (docker compose up -d) and that '
+            'KAFKA_BROKER points to the right broker.',
+            flush=True
+        )
         raise
 
 

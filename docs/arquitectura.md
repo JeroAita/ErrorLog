@@ -28,6 +28,28 @@ En definitiva, una imagen Docker distinta para cada uno de los siguientes:
 
 ![](arquitectura.png)
 
+## Kafka: listeners y acceso desde el host
+
+La instancia de Kafka expone **dos listeners de datos**, porque hay dos tipos
+de clientes con capacidades de resolución de nombres distintas:
+
+| Listener | Dirección anunciada | Quién la usa |
+|---|---|---|
+| `PLAINTEXT` | `kafka:29092` | Los contenedores de la red de Docker: backend, consumer de Karafka y kafka-ui |
+| `PLAINTEXT_HOST` | `localhost:9092` | Los clientes de la máquina del host: los producers Python del repositorio |
+
+El puerto `9092` publicado en el host es el listener `PLAINTEXT_HOST`. El
+nombre `kafka` solo resuelve dentro de la red de Docker: por eso un producer
+ejecutado en el host no puede apuntar a `kafka:29092`, y un contenedor no puede
+apuntar a `localhost:9092` (ahí `localhost` sería el propio contenedor).
+
+Cada cliente elige su dirección con la variable de entorno `KAFKA_BROKER`:
+
+- `docker-compose.yaml` la define como `kafka:29092` para `backend` y
+  `karafka-consumer`.
+- Los producers la leen con un default de `localhost:9092`, que corresponde al
+  listener host-facing.
+
 ## Sistema de Archivos
 
 Directorios separados por responsabilidad.
@@ -38,9 +60,11 @@ docker-compose.yaml # Levantar imágenes de Kafka, base de datos, Ruby y React.
 docs/ # Documentación del proyecto.
 
 producers/ # Scripts Python que comandarán errores a Kafka, por ejemplo:
-    producer_division_by_cero.py
+    producer_division_by_zero.py
     producer_index_error.py
     requirements.txt # dependencias de esos scripts.
+    # Se ejecutan en la máquina del host (no en Docker): ver la sección
+    # "Kafka: listeners y acceso desde el host".
 
 backend/ # Aplicación Ruby on Rails.
     app/

@@ -9,9 +9,11 @@ require_relative "config/environment"
 
 class KarafkaApp < Karafka::App
   setup do |config|
-    # Dirección del broker. En docker-compose los contenedores se resuelven
-    # por nombre de servicio, por eso "kafka:9092" y no "localhost:9092".
-    # Afuera de Docker (corriendo la app a mano) usarías localhost:9092.
+    # Dirección del broker. Kafka expone dos listeners: uno para la red de
+    # Docker (donde los contenedores se resuelven por nombre de servicio) y
+    # otro para la máquina del host.
+    #   - En docker-compose: "kafka:29092" (lo inyecta KAFKA_BROKER).
+    #   - Afuera de Docker: "localhost:9092".
     config.kafka = {
       "bootstrap.servers": ENV.fetch("KAFKA_BROKER", "localhost:9092")
     }

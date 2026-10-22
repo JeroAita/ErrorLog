@@ -1,5 +1,5 @@
 
-<h1><span style="color: red;">ERROR</span>Log - Sistema Log de Errores</h1>
+# ErrorLog - Sistema Log de Errores
 
 Proyecto presentado como trabajo práctico final frente a la asignatura Administración de Bases de datos.
 
@@ -69,7 +69,34 @@ docker compose up
 
 Los componentes y sus puertos se encuentran descritos en `docker-compose.yaml`. Un resumen:
 
-- Backend: 3000
-- Frontend: 5173
-- Kafka: 9092
-- Kafka-ui: 8080
+Servicio | Puerto
+--- | ---
+Backend | `3000`
+Frontend | `5173`
+Kafka | `9092`
+Kafka-ui | `8080`
+
+### Probar el flujo completo con los producers
+
+En `producers/` hay 5 scripts Python que generan errores a propósito y los
+envían al tópico `error-logs`. Se ejecutan **en el host**, contra Kafka:
+
+~~~bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r producers/requirements.txt
+
+python producers/producer_division_by_zero.py
+python producers/producer_index_error.py
+python producers/producer_key_error.py
+python producers/producer_type_error.py
+python producers/producer_file_not_found.py
+~~~
+
+Cada script imprime `Sent error-log to Kafka: <service_name> - <error_type>`.
+Los eventos son persistidos por el consumer de Karafka y quedan disponibles en
+la API (`curl http://localhost:3000/errors`) y en la interfaz web
+(http://localhost:5173).
+
+El broker se puede cambiar con la variable de entorno `KAFKA_BROKER`
+(por defecto `localhost:9092`).
